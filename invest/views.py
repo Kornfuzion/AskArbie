@@ -76,50 +76,50 @@ def display_home(request, userid):
         return render_to_response('invest/index.html')"""
 
     template = loader.get_template('invest/browse.html')
-    rec = RBC_Customer.objects.get(id_exact=userid)
-    if (len(rec) == 0):
+    rec = RBC_Customer.objects.get(id=userid)
+    if rec is None:
         return render_to_response('invest/index.html')
     else:
         makeFig()
         context = RequestContext(request, {
             'investment_1_name': 'High Risk Stock A',
-            'investment_1_value': rec[0].investmentData_1,
+            'investment_1_value': rec.investmentData_1,
             'investment_2_name': 'High Risk Stock B',
-            'investment_2_value': rec[0].investmentData_2,
-            'investment_3_name': 'High Risk Stock C',,
-            'investment_3_value': rec[0].investmentData_3,
+            'investment_2_value': rec.investmentData_2,
+            'investment_3_name': 'High Risk Stock C',
+            'investment_3_value': rec.investmentData_3,
             'investment_4_name': 'Medium Risk Stock A',
-            'investment_4_value': rec[0].investmentData_4,
+            'investment_4_value': rec.investmentData_4,
             'investment_5_name': 'Medium Risk Stock B',
-            'investment_5_value': rec[0].investmentData_5,
+            'investment_5_value': rec.investmentData_5,
             'investment_6_name': 'Medium Risk Stock C',
-            'investment_6_value': rec[0].investmentData_6,
+            'investment_6_value': rec.investmentData_6,
             'investment_7_name': 'Low Risk Stock A',
-            'investment_7_value': rec[0].investmentData_7,
+            'investment_7_value': rec.investmentData_7,
             'investment_8_name': 'Low Risk Stock B',
-            'investment_8_value': rec[0].investmentData_8,
+            'investment_8_value': rec.investmentData_8,
             'investment_9_name': 'Low Risk Stock C',
-            'investment_9_value': rec[0].investmentData_9,
+            'investment_9_value': rec.investmentData_9,
             'investment_10_name': 'High Risk Short Term Mutual Fund',
-            'investment_10_value': rec[0].investmentData_10,
+            'investment_10_value': rec.investmentData_10,
             'investment_11_name': 'High Risk Long Term Mutual Fund',
-            'investment_11_value': rec[0].investmentData_11,
+            'investment_11_value': rec.investmentData_11,
             'investment_12_name': 'Low Risk Short Term Mutual Fund',
-            'investment_12_value': rec[0].investmentData_12,
+            'investment_12_value': rec.investmentData_12,
             'investment_13_name': 'Low Risk Long Term Mutual Fund',
-            'investment_13_value': rec[0].investmentData_13,
+            'investment_13_value': rec.investmentData_13,
             'investment_14_name': 'GIC A',
-            'investment_14_value': rec[0].investmentData_14,
+            'investment_14_value': rec.investmentData_14,
             'investment_15_name': 'GIC B',
-            'investment_15_value': rec[0].investmentData_15,
+            'investment_15_value': rec.investmentData_15,
             'investment_16_name': 'GIC C',
-            'investment_16_value': rec[0].investmentData_16,
+            'investment_16_value': rec.investmentData_16,
             'investment_17_name': 'Bond A',
-            'investment_17_value': rec[0].investmentData_17,
+            'investment_17_value': rec.investmentData_17,
             'investment_18_name': 'Bond B',
-            'investment_18_value': rec[0].investmentData_18,
-            'investment_19_name': 'Bond A',
-            'investment_19_value': rec[0].investmentData_19,
+            'investment_18_value': rec.investmentData_18,
+            'investment_19_name': 'Bond C',
+            'investment_19_value': rec.investmentData_19,
 
 
         })
