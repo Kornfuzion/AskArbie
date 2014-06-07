@@ -2,6 +2,7 @@
 
 from django.http import HttpResponse
 from django.template import RequestContext, loader
+from django.shortcuts import render_to_response
 import sys
 
 from pylab import plot, show, savefig, clf
@@ -56,16 +57,16 @@ def request_login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return render_to_response('browse.html',{'state':state, 'username': username})
+                return render_to_response('invest/browse.html')
             else:
-                return render_to_response('index.html')
+                return render_to_response('invest/index.html')
         else:
-            return render_to_response('index.html')
+            return render_to_response('invest/index.html')
     else:
-        return render_to_response('index.html')
+        return render_to_response('invest/index.html')
 
 def display_home(request):
     if request.user.is_authenticated():
-        return render_to_response('browse.html')
+        return render_to_response('invest/browse.html')
     else:
-        return render_to_response('index.html')
+        return render_to_response('invest/index.html')
