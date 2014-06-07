@@ -53,6 +53,8 @@ def request_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
+        return display_home(request, username)
+        """
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
@@ -61,12 +63,70 @@ def request_login(request):
             else:
                 return render_to_response('invest/index.html')
         else:
-            return render_to_response('invest/index.html')
+            return render_to_response('invest/index.html')"""
     else:
-        return render_to_response('invest/index.html')
+        return render_to_response('invest/index.html
+            ')
 
-def display_home(request):
-    if request.user.is_authenticated():
+from mysite.invest.models import RBC_Customer
+
+def display_home(request, userid):
+    """if request.user.is_authenticated():
         return render_to_response('invest/browse.html')
     else:
+        return render_to_response('invest/index.html')"""
+    rec = RBC_Customer.objects.get(id_exact=userid)
+    if (len(rec) == 0):
         return render_to_response('invest/index.html')
+    else:
+        makeFig()
+        context = RequestContext(request, {
+            'investment_1_name': 'High Risk Stock A',
+            'investment_1_value': rec[0].investmentData_1,
+            'investment_2_name': 'High Risk Stock B',
+            'investment_2_value': rec[0].investmentData_2,
+            'investment_3_name': 'High Risk Stock C',,
+            'investment_3_value': rec[0].investmentData_3,
+            'investment_4_name': 'Medium Risk Stock A',
+            'investment_4_value': rec[0].investmentData_4,
+            'investment_5_name': 'Medium Risk Stock B',
+            'investment_5_value': rec[0].investmentData_5,
+            'investment_6_name': 'Medium Risk Stock C',
+            'investment_6_value': rec[0].investmentData_6,
+            'investment_7_name': 'Low Risk Stock A',
+            'investment_7_value': rec[0].investmentData_7,
+            'investment_8_name': 'Low Risk Stock B',
+            'investment_8_value': rec[0].investmentData_8,
+            'investment_9_name': 'Low Risk Stock C',
+            'investment_9_value': rec[0].investmentData_9,
+            'investment_10_name': 'High Risk Short Term Mutual Fund',
+            'investment_10_value': rec[0].investmentData_10,
+            'investment_11_name': 'High Risk Long Term Mutual Fund',
+            'investment_11_value': rec[0].investmentData_11,
+            'investment_12_name': 'Low Risk Short Term Mutual Fund',
+            'investment_12_value': rec[0].investmentData_12,
+            'investment_13_name': 'Low Risk Long Term Mutual Fund',
+            'investment_13_value': rec[0].investmentData_13,
+            'investment_14_name': 'GIC A',
+            'investment_14_value': rec[0].investmentData_14,
+            'investment_15_name': 'GIC B',
+            'investment_15_value': rec[0].investmentData_15,
+            'investment_16_name': 'GIC C',
+            'investment_16_value': rec[0].investmentData_16,
+            'investment_17_name': 'Bond A',
+            'investment_17_value': rec[0].investmentData_17,
+            'investment_18_name': 'Bond B',
+            'investment_18_value': rec[0].investmentData_18,
+            'investment_19_name': 'Bond A',
+            'investment_19_value': rec[0].investmentData_19,
+
+
+        })
+
+    if query:
+        if query.  
+
+
+    return render_to_response('invest/index.html')
+
+
