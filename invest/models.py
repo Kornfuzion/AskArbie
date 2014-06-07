@@ -27,6 +27,11 @@ class RBC_Customer(models.Model):
     investmentData_13 = models.FloatField(u'i_13')
     investmentData_14 = models.FloatField(u'i_14')
     investmentData_15 = models.FloatField(u'i_15')
+    investmentData_12 = models.FloatField(u'i_16')
+    investmentData_13 = models.FloatField(u'i_17')
+    investmentData_14 = models.FloatField(u'i_18')
+    investmentData_15 = models.FloatField(u'i_19')
+
     
     clusterID=models.PositiveIntegerField(u'clusterID')
 
