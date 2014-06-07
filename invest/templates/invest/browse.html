@@ -13,9 +13,9 @@
     <title>RBC Ask Arbie - Browse Recommendations</title>
 
     <!-- Link CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/media/css/bootstrap.css" rel="stylesheet">
+    <link href="/media/css/style.css" rel="stylesheet">
+    <link href="/media/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -32,7 +32,7 @@
           </button>          
         </div>
         <!-- top left logo -->
-        <a class="navbar-brand" href="index.html"><img class="img-responsive" src="img/logo.png" alt=""></a>
+        <a class="navbar-brand" href="index.html"><img class="img-responsive" src="/media/img/logo.png" alt=""></a>
         <!-- nav options -->
         <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
           <ul class="nav navbar-nav">
@@ -49,7 +49,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-2 col-md-2">
-            <img class="img-responsive" src="img/arbie-piechart.png">
+            <img class="img-responsive" src="/media/img/arbie-piechart.png">
           </div>
           <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
             <h2>Here are your results!</h2>
@@ -66,7 +66,6 @@
           <div class="col-lg-6 col-md-6 col-sm-6">
             <h2> Here are where you investments lie: </h2>
             <ul>
-              {% if investment_1_name!=0 %}
               <li> {{investment_1_name}}:{{investment_1_value}}</li>
               <li> item </li>
               <li> item </li>
@@ -117,9 +116,9 @@
     </div><!-- container -->
 
     <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/Chart.js"></script>
+    <script src="/media/js/jquery-1.10.2.js"></script>
+    <script src="/media/js/bootstrap.js"></script>
+    <script src="/media/js/Chart.js"></script>
     <script>
 
     var doughnutData = [
