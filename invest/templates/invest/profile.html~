@@ -13,9 +13,9 @@
     <title>RBC Ask Arbie - Your Profile</title>
 
     <!-- Link CSS -->
-    <link href="/media/css/bootstrap.css" rel="stylesheet">
-    <link href="/media/css/style.css" rel="stylesheet">
-    <link href="/media/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -165,7 +165,7 @@
     </div><!-- container -->
 
     <!-- JavaScript -->
-    <script src="/media/js/jquery-1.10.2.js"></script>
-    <script src="/media/js/bootstrap.js"></script>
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
   </body>
 </html>
