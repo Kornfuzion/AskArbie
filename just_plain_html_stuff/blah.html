@@ -1,0 +1,129 @@
+<html>
+
+<head>
+<script src="http://www.chartjs.org/assets/Chart.js"></script>
+<script>
+function makeChart() {
+	var data = {
+		labels : ["January","February","March","April","May","June","July"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,1)",
+				pointColor : "rgba(220,220,220,1)",
+				pointStrokeColor : "#fff",
+				data : [65,59,90,81,56,55,40]
+			},
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,1)",
+				pointColor : "rgba(151,187,205,1)",
+				pointStrokeColor : "#fff",
+				data : [28,48,40,19,96,27,100]
+			}
+		]
+	};
+	
+	var options = {
+        animation: true
+    };
+
+    //Get the context of the canvas eleent we want to select
+    var ctx = document.getElementById("myChart").getContext("2d");
+    myNewChart = new Chart(ctx).Line(data, options);
+	
+	$( "#accordion" ).accordion();
+}
+</script>
+
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+a:link, a:visited {
+    display: block;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #002888;
+    text-align: center;
+    padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 20px;
+	padding-right: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a:hover, a:active {
+    background-color: #7A991A;
+}
+</style>
+
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"/>
+
+</head>
+
+<body onload="makeChart()" style="width:1000px; margin:auto;">
+	<table style="background-color:#99A9CF; width:100%; border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;">
+	<tr>
+		<td rowspan="2"><img src="rbc-bank.png"/></td>
+		<td><h1> RBC Investment Advisor</h1></td>
+	</tr>
+	<tr>
+		<td><ul>
+				<li><a href="#">My Investments</a></li>
+				<li><a href="#">Forecast</a></li>
+				<li><a href="#">Recommendations</a></li>
+				<li><a href="#">Adjust Goals</a></li>
+				<li><a href="#">My Cluster</a></li>
+		</ul></td>
+	</tr>
+	</table>
+	
+	
+	<table><tr><td><canvas id="myChart" width="400" height="300"></canvas></td>
+    <td><div id="accordion">
+	  <h3>Recommendation 1</h3>
+	  <div style="font-size:12">
+		<img src="stock1.PNG" width="310px" style="float:left; margin:10px;"/>
+		This investment option was recommended to you based on the past performance of other investors in your cluster.
+		<p><b>Name: </b>Mutual Fund X</p>
+		<p><b>Risk: </b>Low</p>
+		<p><b>Payoff: </b>Medium, long term</p>
+		<p><b>Diversity Index: </b>Medium</p>
+	  </div>
+	  <h3>Recommendation 2</h3>
+	  <div style="font-size:12">
+		<img src="stock2.PNG" width="310px" style="float:left; margin:10px;"/>
+		This investment option was recommended to you based on the past performance of other investors in your cluster.
+		<p><b>Name: </b>Mutual Fund X</p>
+		<p><b>Risk: </b>Low</p>
+		<p><b>Payoff: </b>Medium, long term</p>
+		<p><b>Diversity Index: </b>Medium</p>
+	  </div>
+	  <h3>Recommendation 3</h3>
+	  <div style="font-size:12">
+		<img src="stock3.PNG" width="310px" style="float:left; margin:10px;"/>
+		This investment option was recommended to you based on the past performance of other investors in your cluster.
+		<p><b>Name: </b>Mutual Fund X</p>
+		<p><b>Risk: </b>Low</p>
+		<p><b>Payoff: </b>Medium, long term</p>
+		<p><b>Diversity Index: </b>Medium</p>
+	  </div>
+	</div></td></tr></table>
+	
+	
+	
+</body>
+
+</html>
