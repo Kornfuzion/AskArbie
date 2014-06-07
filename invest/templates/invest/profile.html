@@ -53,63 +53,27 @@
     <div class="section">
       <div class="container">
         <div class="row">
-
-          <label for="firstname" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-            First name:
-          </label>
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-            <input type="text" class="form-control" id="firstname" placeholder="Enter First Name">
-          </div>
-          <br/><br/>
-          
-          <label for="lastname" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-            Last name:
-          </label>
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-            <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name">
-          </div>
-          <br/><br/>
-
-          <label for="country" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-              Country:
-          </label>
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-            <select name="country" id="country" class="form-control">
-              <option>--Please Select--</option>
-              <option>India</option>
-              <option>United States</option>
-              <option>Canada</option>
-              <option>United Kingdom</option>
-              <option>Others</option>
-            </select>
-          </div>
-          <br/><br/>
-
-          <label for="sex" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-            Sex:
-          </label>
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-            <label class="radio">
-              <input type="radio" name="sex" id="sex" value="male" checked>
-              Male
+          <form action="browse.html" class="profile" method="post">
+            
+            <label for="investment_1_name" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+              {{investment_1_name}}:
             </label>
-            <label class="radio">
-              <input type="radio" name="sex" id="sex" value="female">
-              Female
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+              <input type="number" class="form-control" name="investment_1_name" value="{{investment_1_value}}"  placeholder="Username">
+            </div>
+            <br/><br/>
+
+            <label for="uploadfile" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+              Upload file:
             </label>
-          </div>
-          <br/><br/>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+              <input type="file" name="uploadfile" id="uploadfile">
+              <p class="help-block">
+                Allowed formats: txt
+              </p>
+            </div> 
 
-          <label for="uploadfile" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-            Upload file:
-          </label>
-          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-            <input type="file" name="uploadfile" id="uploadfile">
-            <p class="help-block">
-              Allowed formats: txt
-            </p>
-          </div> 
-
+          </form>
         </div> <!--row--!> 
       </div> <!-- container -->
     </div>
