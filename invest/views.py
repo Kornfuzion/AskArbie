@@ -61,8 +61,8 @@ def request_login(request):
                 return render_to_response('index.html')
         else:
             return render_to_response('index.html')
-
-    return render_to_response('index.html')
+    else:
+        return render_to_response('index.html')
 
 def display_home(request):
     if request.user.is_authenticated():
