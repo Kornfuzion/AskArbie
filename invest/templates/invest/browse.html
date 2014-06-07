@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home Page for SWAG</title>
+    <title>RBC Ask Arbie - Browse Recommendations</title>
 
     <!-- Link CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -48,10 +48,13 @@
     <div class="section text-center">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12">
+          <div class="col-lg-2 col-md-2">
+            <img class="img-responsive" src="img/arbie-piechart.png">
+          </div>
+          <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
             <h2>Here are your results!</h2>
-            <p> another paragraph </p>
-            <!--<hr>--!> <!-- break -->
+            <h3>Below are some recommendations Arbie has for you! Should you have any more questions regarding any of recommendations, feel free to contact your local RBC advisor for more details!</h3>
+            <!--<hr>--> <!-- break -->
           </div>
         </div><!-- row -->
       </div><!-- container -->
@@ -61,15 +64,20 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <h2> title and list on right side </h2>
+            <h2> Here are where you investments lie: </h2>
             <ul>
-              { % for investment in investments% }
-                <li>{{ investment }}</li>
-              { % endfor % }
+              {% if investment_1_name!=0 %}
+              <li> {{investment_1_name}}:{{investment_1_value}}</li>
+              <li> item </li>
+              <li> item </li>
+              <li> item </li>
+              <li> item </li>
+              <li> item </li>
+              <li> item </li>
             </ul>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <canvas id="doughnut" height="300" width="555"></canvas>
+            <canvas id="doughnut" height="300" width="550"></canvas>
           </div>
         </div><!-- row -->
       </div><!-- container -->
@@ -79,7 +87,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <canvas id="line" height="300" width="555"></canvas>
+            <canvas id="line" height="300" width="550"></canvas>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
             <h2> title and list on left side </h2>
@@ -116,6 +124,7 @@
 
     var doughnutData = [
         {
+          name: "test",
           value: 30,
           color:"#F7464A"
         },
