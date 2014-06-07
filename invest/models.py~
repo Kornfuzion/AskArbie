@@ -1,0 +1,30 @@
+from django.db import models
+
+# Create your models here.
+
+class User(models.Model):
+    name = models.CharField(max_length=200)
+    account_number = models.CharField(max_length=50)
+
+class RBC_Customer(models.Model):
+    userName = models.CharField(max_lenth=200)
+    income = models.PositiveIntegerField(u'income')
+    
+    investmentData_1 = models.PositiveIntegerField(u'i_1')
+    investmentData_2 = models.PositiveIntegerField(u'i_2')
+    investmentData_3 = models.PositiveIntegerField(u'i_3')
+    investmentData_4 = models.PositiveIntegerField(u'i_4')
+    investmentData_5 = models.PositiveIntegerField(u'i_5')
+    investmentData_6 = models.PositiveIntegerField(u'i_6')
+    investmentData_7 = models.PositiveIntegerField(u'i_7')
+    investmentData_8 = models.PositiveIntegerField(u'i_8')
+    investmentData_9 = models.PositiveIntegerField(u'i_9')
+    investmentData_10 = models.PositiveIntegerField(u'i_10')
+    investmentData_11 = models.PositiveIntegerField(u'i_11')
+    investmentData_12 = models.PositiveIntegerField(u'i_12')
+    investmentData_13 = models.PositiveIntegerField(u'i_13')
+    investmentData_14 = models.PositiveIntegerField(u'i_14')
+    investmentData_15 = models.PositiveIntegerField(u'i_15')
+    
+    clusterID=models.PositiveIntegerField(u'clusterID')
+

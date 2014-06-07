@@ -8,5 +8,5 @@ urlpatterns = patterns('',
     url(r'^(?P<num>\d+)/$', views.account, name='account'),
     url(r'^login/$', views.request_login),
     url(r'^account/(?P<userid>\d+)/$', views.display_home),
-    url(r'^profile/(?P<userid>\d+)/$', views.edit_account)
+    url(r'^profile/$', views.edit_account)
 )

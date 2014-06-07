@@ -1,0 +1,256 @@
+<!-- 
+  RBC template
+  Author: Ernest Yim
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RBC Ask Arbie - Browse Recommendations</title>
+
+    <!-- Link CSS -->
+    <link href="/media/css/bootstrap.css" rel="stylesheet">
+    <link href="/media/css/style.css" rel="stylesheet">
+    <link href="/media/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">     
+        <div class="navbar-header">
+          <!-- nav button icon for smaller resolutions (mobile) -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>          
+        </div>
+        <!-- top left logo -->
+        <a class="navbar-brand" href="index.html"><img class="img-responsive" src="/media/img/logo.png" alt=""></a>
+        <!-- nav options -->
+        <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="browse.html">Browse</a></li>
+          </ul>
+        </div>
+      </div><!-- container -->
+    </nav>
+    
+
+    <div class="section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2 col-md-2">
+            <img class="img-responsive" src="/media/img/arbie-piechart.png">
+          </div>
+          <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <h2>Here are your results!</h2>
+            <h3>Below are some recommendations Arbie has for you! Should you have any more questions regarding any of recommendations, feel free to contact your local RBC advisor for more details!</h3>
+            <!--<hr>--> <!-- break -->
+          </div>
+        </div><!-- row -->
+      </div><!-- container -->
+    </div><!-- section-colored -->
+
+    <div class="section-colored">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <h2> Here are where you investments lie: </h2>
+            <ul>
+              <li> {{investment_1_name}}:{{investment_1_value}}</li>
+              <li> item </li>
+              <li> item </li>
+              <li> item </li>
+              <li> item </li>
+              <li> item </li>
+              <li> item </li>
+            </ul>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <canvas id="doughnut" height="300" width="550"></canvas>
+          </div>
+        </div><!-- row -->
+      </div><!-- container -->
+    </div><!-- section -->
+
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <canvas id="line" height="300" width="550"></canvas>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <h2> title and list on left side </h2>
+            <ul>
+              <li> item </li>
+              <li> item </li>
+              <li> item </li>
+              <li> item </li>
+              <li> item </li>
+              <li> item </li>
+              <li> item </li>
+            </ul>
+          </div>
+        </div><!-- row -->
+      </div><!-- container -->
+    </div><!-- section-colored -->
+
+    <div class="container">
+      <hr>
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">
+            <p>Copyright &copy; RBC Ask Arbie 2014</p>
+          </div>
+        </div>
+      </footer>
+    </div><!-- container -->
+
+    <!-- JavaScript -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/Chart.js"></script>
+    <script>
+
+    var doughnutData = [
+        {
+          name: "test",
+          value: 30,
+          color:"#F7464A"
+        },
+        {
+          value : 50,
+          color : "#46BFBD"
+        },
+        {
+          value : 100,
+          color : "#FDB45C"
+        },
+        {
+          value : 40,
+          color : "#949FB1"
+        },
+        {
+          value : 120,
+          color : "#4D5360"
+        }
+      
+      ];
+    var lineChartData = {
+      labels : ["","","","","","",""],
+      datasets : [
+        {
+          fillColor : "rgba(220,220,220,0.5)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          data : [65,59,90,81,56,55,40]
+        },
+        {
+          fillColor : "rgba(151,187,205,0.5)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor : "#fff",
+          data : [28,48,40,19,96,27,100]
+        }
+      ]
+      
+    };
+    var pieData = [
+        {
+          value: 30,
+          color:"#F38630"
+        },
+        {
+          value : 50,
+          color : "#E0E4CC"
+        },
+        {
+          value : 100,
+          color : "#69D2E7"
+        }
+      
+      ];
+    var barChartData = {
+      labels : ["January","February","March","April","May","June","July"],
+      datasets : [
+        {
+          fillColor : "rgba(220,220,220,0.5)",
+          strokeColor : "rgba(220,220,220,1)",
+          data : [65,59,90,81,56,55,40]
+        },
+        {
+          fillColor : "rgba(151,187,205,0.5)",
+          strokeColor : "rgba(151,187,205,1)",
+          data : [28,48,40,19,96,27,100]
+        }
+      ]
+      
+    };
+  var chartData = [
+      {
+        value : Math.random(),
+        color: "#D97041"
+      },
+      {
+        value : Math.random(),
+        color: "#C7604C"
+      },
+      {
+        value : Math.random(),
+        color: "#21323D"
+      },
+      {
+        value : Math.random(),
+        color: "#9D9B7F"
+      },
+      {
+        value : Math.random(),
+        color: "#7D4F6D"
+      },
+      {
+        value : Math.random(),
+        color: "#584A5E"
+      }
+    ];
+    var radarChartData = {
+      labels : ["","","","","","",""],
+      datasets : [
+        {
+          fillColor : "rgba(220,220,220,0.5)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          data : [65,59,90,81,56,55,40]
+        },
+        {
+          fillColor : "rgba(151,187,205,0.5)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor : "#fff",
+          data : [28,48,40,19,96,27,100]
+        }
+      ]
+      
+    };
+  new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(doughnutData);
+  new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+  new Chart(document.getElementById("radar").getContext("2d")).Radar(radarChartData);
+  new Chart(document.getElementById("polarArea").getContext("2d")).PolarArea(chartData);
+  new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
+  new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
+  
+  </script>
+
+
+  </body>
+</html>
