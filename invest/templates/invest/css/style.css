@@ -16,7 +16,7 @@ body {
 }
 
 .navbar-default .navbar-nav > li > a:hover{
-  color: #BBB368;
+  color: #FFE600;
 }
 
 .navbar {
@@ -73,7 +73,13 @@ body {
 }
 
 .signup-btn {
-  margin:2px;
+  margin: 2px;
+  color: #FFF;
+  background-color: #002E66;
+}
+
+.signup-btn:hover {
+  color: #FFE600;;
 }
 
 .item,
