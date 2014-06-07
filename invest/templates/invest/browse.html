@@ -63,13 +63,9 @@
           <div class="col-lg-6 col-md-6 col-sm-6">
             <h2> title and list on right side </h2>
             <ul>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
+              { % for investment in investments% }
+                <li>{{ investment }}</li>
+              { % endfor % }
             </ul>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
