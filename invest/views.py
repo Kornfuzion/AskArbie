@@ -65,8 +65,7 @@ def request_login(request):
         else:
             return render_to_response('invest/index.html')"""
     else:
-        return render_to_response('invest/index.html
-            ')
+        return render_to_response('invest/index.html')
 
 from mysite.invest.models import RBC_Customer
 
@@ -75,6 +74,8 @@ def display_home(request, userid):
         return render_to_response('invest/browse.html')
     else:
         return render_to_response('invest/index.html')"""
+
+    template = loader.get_template('invest/browse.html')
     rec = RBC_Customer.objects.get(id_exact=userid)
     if (len(rec) == 0):
         return render_to_response('invest/index.html')
@@ -123,10 +124,6 @@ def display_home(request, userid):
 
         })
 
-    if query:
-        if query.  
-
-
-    return render_to_response('invest/index.html')
+    return HttpResponse(template.render(context))
 
 
