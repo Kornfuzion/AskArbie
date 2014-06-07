@@ -44,3 +44,28 @@ def account(request, num):
             'name': usrs[0].name
         })
     return HttpResponse(template.render(context))
+
+
+def request_login(request):
+    username = password = ''
+    if request.POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return render_to_response('browse.html',{'state':state, 'username': username})
+            else:
+                return render_to_response('index.html')
+        else:
+            return render_to_response('index.html')
+
+    return render_to_response('index.html')
+
+def display_home(request):
+    if request.user.is_authenticated():
+        return render_to_response('browse.html')
+    else:
+        return render_to_response('index.html')
