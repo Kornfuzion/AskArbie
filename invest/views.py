@@ -13,6 +13,7 @@ from scipy.cluster.vq import kmeans,vq
 
 from mysite.invest.models import User
 from mysite.invest.models import RBC_Customer
+from mysite.invest.models import Investment_History
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Avg
 
@@ -111,54 +112,79 @@ def edit_account(request):
 	return render_to_response('invest/index.html')
 
     userid = request.session['user_id']
-    rec = RBC_Customer.objects.get(id=userid)
-    if rec is None:
+    try:
+        rec = RBC_Customer.objects.get(id=userid)
+    except ObjectDoesNotExist:
         return render_to_response('invest/index.html')
-    else:
-        #makeFig()
-        context = RequestContext(request, {
-            'username': rec.userName,
-            'investment_1_name': 'High Risk Stock A',
-            'investment_1_value': rec.investmentData_1,
-            'investment_2_name': 'High Risk Stock B',
-            'investment_2_value': rec.investmentData_2,
-            'investment_3_name': 'High Risk Stock C',
-            'investment_3_value': rec.investmentData_3,
-            'investment_4_name': 'Medium Risk Stock A',
-            'investment_4_value': rec.investmentData_4,
-            'investment_5_name': 'Medium Risk Stock B',
-            'investment_5_value': rec.investmentData_5,
-            'investment_6_name': 'Medium Risk Stock C',
-            'investment_6_value': rec.investmentData_6,
-            'investment_7_name': 'Low Risk Stock A',
-            'investment_7_value': rec.investmentData_7,
-            'investment_8_name': 'Low Risk Stock B',
-            'investment_8_value': rec.investmentData_8,
-            'investment_9_name': 'Low Risk Stock C',
-            'investment_9_value': rec.investmentData_9,
-            'investment_10_name': 'High Risk Short Term Mutual Fund',
-            'investment_10_value': rec.investmentData_10,
-            'investment_11_name': 'High Risk Long Term Mutual Fund',
-            'investment_11_value': rec.investmentData_11,
-            'investment_12_name': 'Low Risk Short Term Mutual Fund',
-            'investment_12_value': rec.investmentData_12,
-            'investment_13_name': 'Low Risk Long Term Mutual Fund',
-            'investment_13_value': rec.investmentData_13,
-            'investment_14_name': 'GIC A',
-            'investment_14_value': rec.investmentData_14,
-            'investment_15_name': 'GIC B',
-            'investment_15_value': rec.investmentData_15,
-            'investment_16_name': 'GIC C',
-            'investment_16_value': rec.investmentData_16,
-            'investment_17_name': 'Bond A',
-            'investment_17_value': rec.investmentData_17,
-            'investment_18_name': 'Bond B',
-            'investment_18_value': rec.investmentData_18,
-            'investment_19_name': 'Bond C',
-            'investment_19_value': rec.investmentData_19,
-        })
+    #makeFig()
+    context = RequestContext(request, {
+        'username': rec.userName,
+        'investment_1_name': 'High Risk Stock A',
+        'investment_1_value': rec.investmentData_1,
+        'investment_2_name': 'High Risk Stock B',
+        'investment_2_value': rec.investmentData_2,
+        'investment_3_name': 'High Risk Stock C',
+        'investment_3_value': rec.investmentData_3,
+        'investment_4_name': 'Medium Risk Stock A',
+        'investment_4_value': rec.investmentData_4,
+        'investment_5_name': 'Medium Risk Stock B',
+        'investment_5_value': rec.investmentData_5,
+        'investment_6_name': 'Medium Risk Stock C',
+        'investment_6_value': rec.investmentData_6,
+        'investment_7_name': 'Low Risk Stock A',
+        'investment_7_value': rec.investmentData_7,
+        'investment_8_name': 'Low Risk Stock B',
+        'investment_8_value': rec.investmentData_8,
+        'investment_9_name': 'Low Risk Stock C',
+        'investment_9_value': rec.investmentData_9,
+        'investment_10_name': 'High Risk Short Term Mutual Fund',
+        'investment_10_value': rec.investmentData_10,
+        'investment_11_name': 'High Risk Long Term Mutual Fund',
+        'investment_11_value': rec.investmentData_11,
+        'investment_12_name': 'Low Risk Short Term Mutual Fund',
+        'investment_12_value': rec.investmentData_12,
+        'investment_13_name': 'Low Risk Long Term Mutual Fund',
+        'investment_13_value': rec.investmentData_13,
+        'investment_14_name': 'GIC A',
+        'investment_14_value': rec.investmentData_14,
+        'investment_15_name': 'GIC B',
+        'investment_15_value': rec.investmentData_15,
+        'investment_16_name': 'GIC C',
+        'investment_16_value': rec.investmentData_16,
+        'investment_17_name': 'Bond A',
+        'investment_17_value': rec.investmentData_17,
+        'investment_18_name': 'Bond B',
+        'investment_18_value': rec.investmentData_18,
+        'investment_19_name': 'Bond C',
+        'investment_19_value': rec.investmentData_19,
+    })
 
     return HttpResponse(template.render(context))
+
+def create_investment_history(investID):
+    rec = Investment_History.objects.get(id=investID)
+    userpoints = list()
+    userpoints.append({"time_period":1, "value" :rec.roi_1, })
+    userpoints.append({"time_period":2, "value" :rec.roi_2, })
+    userpoints.append({"time_period":3, "value" :rec.roi_3, })
+    userpoints.append({"time_period":4, "value" :rec.roi_4, })
+    userpoints.append({"time_period":5, "value" :rec.roi_5, })
+    userpoints.append({"time_period":6, "value" :rec.roi_6, })
+    userpoints.append({"time_period":7, "value" :rec.roi_7, })
+    userpoints.append({"time_period":8, "value" :rec.roi_8, })
+    userpoints.append({"time_period":9, "value" :rec.roi_9, })
+    userpoints.append({"time_period":10, "value" :rec.roi_10, })
+    userpoints.append({"time_period":11, "value" :rec.roi_11, })
+    userpoints.append({"time_period":12, "value" :rec.roi_12, })
+    userpoints.append({"time_period":13, "value" :rec.roi_13, })
+    userpoints.append({"time_period":14, "value" :rec.roi_14, })
+    userpoints.append({"time_period":15, "value" :rec.roi_15, })
+    userpoints.append({"time_period":16, "value" :rec.roi_16, })
+    userpoints.append({"time_period":17, "value" :rec.roi_17, })
+    userpoints.append({"time_period":18, "value" :rec.roi_18, })
+    userpoints.append({"time_period":19, "value" :rec.roi_19, })
+    userpoints.append({"time_period":20, "value" :rec.roi_20, })
+    return (userpoints, rec.name, rec.risk)
 
 def display_home(request):
     template = loader.get_template('invest/browse.html')
@@ -167,13 +193,28 @@ def display_home(request):
 	return render_to_response('invest/index.html')
     
     userid=request.session['user_id']
-    rec = RBC_Customer.objects.get(id=userid)
+
+    try:
+        rec = RBC_Customer.objects.get(id=userid)
+    except ObjectDoesNotExist:
+        return render_to_response('invest/index.html')
+
     if rec is None:
         return render_to_response('invest/index.html')
     else:
         #makeFig()
         (clusterRisk, clusterRiskCategory, clusterRoi, clusterIncome) = about_cluster(rec.clusterID)
         (add, rem) = get_recommendations(rec)
+
+        recommendations = list()
+	for investmentId in add:
+            (investment_history, name, risk_level) = create_investment_history(investmentId)
+            recommendations.append({"name": name, "risk" :risk_level, "graph":investment_history})
+
+	for investmentId in rem:
+            (investment_history, name, risk_level) = create_investment_history(investmentId)
+            recommendations.append({"name": name, "risk" :risk_level, "graph":investment_history})
+
         userpoints = list()
         userpoints.append({"time_period":1, "you" :rec.roi_1, "avg":clusterRoi[0]["value"]})
         userpoints.append({"time_period":2, "you" :rec.roi_2, "avg":clusterRoi[1]["value"]})
@@ -241,6 +282,7 @@ def display_home(request):
             'clusterRiskCategory': clusterRiskCategory,
             'clusterRoi': clusterRoi,
             'clusterIncome': "%.2f" % clusterIncome,
+            'recommendations':recommendations
         })
 
     return HttpResponse(template.render(context))
