@@ -136,7 +136,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <canvas id="line" height="300" width="550"></canvas>
+            <div id="areachart" style="width: 550px; height: 300px;"></div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
             <h2> title and list on left side </h2>
@@ -203,8 +203,26 @@
           chartArea:{width:'100%',height:'100%'}
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-        chart.draw(datadc, optionsdc);
+        var chartdc = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chartdc.draw(datadc, optionsdc);
+
+        function drawChart() {
+        var dataac = google.visualization.arrayToDataTable([
+          {% for roiUserPoint in roiUser  %}
+            {{ roiUserPoint.time_period }}
+            {{ roiUserPoint.value }}
+          {% endfor %}
+        ]);
+
+        var optionsac = {
+          title: 'Company Performance',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chartac = new google.visualization.AreaChart(document.getElementById('areachart'));
+        chartac.draw(dataac, optionsac);
+
       }
     </script>
     
