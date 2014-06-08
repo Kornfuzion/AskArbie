@@ -144,6 +144,7 @@ def go():
         return [sum([r[i] * p for r, p in zip(roi, person)]) for i in range(20)]
 
     from invest.models import RBC_Customer
+    from invest.models import Investment
 
     for i, p in enumerate(people):
         args = {"investmentData_%s" % (n+1) : v for n,v in enumerate(p[0])}
@@ -160,5 +161,16 @@ def go():
 
         c = RBC_Customer(**args)
         c.save()
+
+    for i, inv in enumerate(investments):
+        args = {}
+        for n in range(20):
+            args["roi_%s" % (n+1)] = roi[i][n]
+        args["risk"] = risk[i]
+        args["name"] = inv
+
+        obj = Investment(**args)
+        obj.save()
+        
 
 
