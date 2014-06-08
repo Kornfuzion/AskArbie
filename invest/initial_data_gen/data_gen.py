@@ -155,7 +155,7 @@ def go():
 
         personalRoi = getRoi(p[0])
         for n in range(20):
-            args["roi_%s" % str(n)] = personalRoi[n]
+            args["roi_%s" % (n+1)] = personalRoi[n]
         args["risk"] = getRisk(p[0])
 
         c = RBC_Customer(**args)

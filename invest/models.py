@@ -1,7 +1,6 @@
 from django.db import models
 
 # Create your models here.
-# YO SANDRO WUZ HERE!!
 
 class User(models.Model):
     name = models.CharField(max_length=200)
@@ -32,6 +31,28 @@ class RBC_Customer(models.Model):
     investmentData_18 = models.FloatField(u'i_18')
     investmentData_19 = models.FloatField(u'i_19')
 
+    roi_1 = models.FloatField(u'r_1')
+    roi_2 = models.FloatField(u'r_2')
+    roi_3 = models.FloatField(u'r_3')
+    roi_4 = models.FloatField(u'r_4')
+    roi_5 = models.FloatField(u'r_5')
+    roi_6 = models.FloatField(u'r_6')
+    roi_7 = models.FloatField(u'r_7')
+    roi_8 = models.FloatField(u'r_8')
+    roi_9 = models.FloatField(u'r_9')
+    roi_10 = models.FloatField(u'r_11')
+    roi_11 = models.FloatField(u'r_11')
+    roi_12 = models.FloatField(u'r_12')
+    roi_13 = models.FloatField(u'r_13')
+    roi_14 = models.FloatField(u'r_14')
+    roi_15 = models.FloatField(u'r_15')
+    roi_16 = models.FloatField(u'r_16')
+    roi_17 = models.FloatField(u'r_17')
+    roi_18 = models.FloatField(u'r_18')
+    roi_19 = models.FloatField(u'r_19')
+    roi_20 = models.FloatField(u'r_20')
+    
+    risk = models.FloatField(u'risk')
     
     clusterID=models.PositiveIntegerField(u'clusterID')
 
