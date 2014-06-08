@@ -13,9 +13,9 @@
     <title>RBC Ask Arbie - Home</title>
 
     <!-- Link CSS -->
-    <link href="/media/css/bootstrap.css" rel="stylesheet">
-    <link href="/media/css/style.css" rel="stylesheet">
-    <link href="/media/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -32,7 +32,7 @@
           </button>          
         </div>
         <!-- top left logo -->
-        <a class="navbar-brand" href="index.html"><img class="img-responsive" src="/media/img/logo.png" alt=""></a>
+        <a class="navbar-brand" href="index.html"><img class="img-responsive" src="img/logo.png" alt=""></a>
         <!-- nav options -->
         <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
           <ul class="nav navbar-nav">
@@ -46,38 +46,35 @@
     
     <div id="myCarousel" class="carousel slide">
       <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <!--<li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li> -->
-        </ol>
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <!--<li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li> -->
+      </ol>
         <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <div class="fill" style="background-image:url('/media/img/dad.JPG');"></div>
-            <div class="carousel-caption">
-              <div class="front-signup">
-                <h4>Your investments await!</h4>
-                <form action="login/" class="signup" method="post">
-                  <div class="field">
-                    <input type="text"  class="form-control" autocomplete="off" name="username" maxlength="20" placeholder="Username">
-                  </div>
-                  <!--
-                  <div class="field">
-                    <input type="text" class="form-control"autocomplete="off" name="user[email]" placeholder="Email">
-                  </div>
-                  -->                  
-                  <div class="field">
-                    <input type="password" class="form-control" name="password" placeholder="Password">
-                  </div>
+      <div class="carousel-inner">
+        <div class="item active">
+          <div class="fill" style="background-image:url('img/dad.JPG');"></div>
+          <div class="carousel-caption">
+            <div class="front-login">
+              <h4>Your investments await!</h4>
+              <form action="login/" class="signup" method="post">
 
-                  <button type="submit" class="btn signup-btn">
-                    Sign up
-                  </button>
-                </form>
-              </div>
+                <div class="field">
+                  <input type="text"  class="form-control" autocomplete="off" name="account_number" maxlength="20" placeholder="Account Number">
+                </div>              
+
+                <div class="field">
+                  <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+
+                <button type="submit" class="btn signup-btn">
+                  Login
+                </button>
+              </form>
             </div>
           </div>
+        </div>
           <!--
           <div class="item">
             <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');"></div>
@@ -107,7 +104,7 @@
           <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
           </div>
           <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-            <h2>Know where you are, get where you want to be.<br/>
+            <h2>Know where you are. Get where you want to be.<br/>
             See what investments may be right for you.</h2>
             <h3>Using information provided by you in your profile, Arbie will recommend some possible investments for you to pursue </h3>
             <br/>
@@ -192,8 +189,8 @@
     </div><!-- container -->
 
     <!-- JavaScript -->
-    <script src="/media/js/jquery-1.10.2.js"></script>
-    <script src="/media/js/bootstrap.js"></script>
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
 
   </body>
 </html>

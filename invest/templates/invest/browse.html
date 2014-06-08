@@ -13,9 +13,9 @@
     <title>RBC Ask Arbie - Browse Recommendations</title>
 
     <!-- Link CSS -->
-    <link href="/media/css/bootstrap.css" rel="stylesheet">
-    <link href="/media/css/style.css" rel="stylesheet">
-    <link href="/media/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -32,7 +32,7 @@
           </button>          
         </div>
         <!-- top left logo -->
-        <a class="navbar-brand" href="index.html"><img class="img-responsive" src="/media/img/logo.png" alt=""></a>
+        <a class="navbar-brand" href="index.html"><img class="img-responsive" src="img/logo.png" alt=""></a>
         <!-- nav options -->
         <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
           <ul class="nav navbar-nav">
@@ -49,7 +49,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-2 col-md-2">
-            <img class="img-responsive" src="/media/img/arbie-piechart.png">
+            <img class="img-responsive" src="img/arbie-piechart.png">
           </div>
           <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
             <h2>Here are your results!</h2>
@@ -76,7 +76,7 @@
             </ul>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <canvas id="doughnut" height="300" width="550"></canvas>
+            <div id="donutchart" style="width: 550px; height: 300px;"></div>
           </div>
         </div><!-- row -->
       </div><!-- container -->
@@ -116,141 +116,33 @@
     </div><!-- container -->
 
     <!-- JavaScript -->
-    <script src="/media/js/jquery-1.10.2.js"></script>
-    <script src="/media/js/bootstrap.js"></script>
-    <script src="/media/js/Chart.js"></script>
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="https://www.google.com/jsapi"></script>
     <script>
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
 
-    var doughnutData = [
-        {
-          name: "test",
-          value: 30,
-          color:"#F7464A"
-        },
-        {
-          value : 50,
-          color : "#46BFBD"
-        },
-        {
-          value : 100,
-          color : "#FDB45C"
-        },
-        {
-          value : 40,
-          color : "#949FB1"
-        },
-        {
-          value : 120,
-          color : "#4D5360"
-        }
-      
-      ];
-    var lineChartData = {
-      labels : ["","","","","","",""],
-      datasets : [
-        {
-          fillColor : "rgba(220,220,220,0.5)",
-          strokeColor : "rgba(220,220,220,1)",
-          pointColor : "rgba(220,220,220,1)",
-          pointStrokeColor : "#fff",
-          data : [65,59,90,81,56,55,40]
-        },
-        {
-          fillColor : "rgba(151,187,205,0.5)",
-          strokeColor : "rgba(151,187,205,1)",
-          pointColor : "rgba(151,187,205,1)",
-          pointStrokeColor : "#fff",
-          data : [28,48,40,19,96,27,100]
-        }
-      ]
-      
-    };
-    var pieData = [
-        {
-          value: 30,
-          color:"#F38630"
-        },
-        {
-          value : 50,
-          color : "#E0E4CC"
-        },
-        {
-          value : 100,
-          color : "#69D2E7"
-        }
-      
-      ];
-    var barChartData = {
-      labels : ["January","February","March","April","May","June","July"],
-      datasets : [
-        {
-          fillColor : "rgba(220,220,220,0.5)",
-          strokeColor : "rgba(220,220,220,1)",
-          data : [65,59,90,81,56,55,40]
-        },
-        {
-          fillColor : "rgba(151,187,205,0.5)",
-          strokeColor : "rgba(151,187,205,1)",
-          data : [28,48,40,19,96,27,100]
-        }
-      ]
-      
-    };
-  var chartData = [
-      {
-        value : Math.random(),
-        color: "#D97041"
-      },
-      {
-        value : Math.random(),
-        color: "#C7604C"
-      },
-      {
-        value : Math.random(),
-        color: "#21323D"
-      },
-      {
-        value : Math.random(),
-        color: "#9D9B7F"
-      },
-      {
-        value : Math.random(),
-        color: "#7D4F6D"
-      },
-      {
-        value : Math.random(),
-        color: "#584A5E"
+        var options = {
+          legend: 'none',
+          pieHole: 0.4,
+          backgroundColor: 'none',
+          chartArea:{width:'100%',height:'100%'}
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
       }
-    ];
-    var radarChartData = {
-      labels : ["","","","","","",""],
-      datasets : [
-        {
-          fillColor : "rgba(220,220,220,0.5)",
-          strokeColor : "rgba(220,220,220,1)",
-          pointColor : "rgba(220,220,220,1)",
-          pointStrokeColor : "#fff",
-          data : [65,59,90,81,56,55,40]
-        },
-        {
-          fillColor : "rgba(151,187,205,0.5)",
-          strokeColor : "rgba(151,187,205,1)",
-          pointColor : "rgba(151,187,205,1)",
-          pointStrokeColor : "#fff",
-          data : [28,48,40,19,96,27,100]
-        }
-      ]
-      
-    };
-  new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(doughnutData);
-  new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
-  new Chart(document.getElementById("radar").getContext("2d")).Radar(radarChartData);
-  new Chart(document.getElementById("polarArea").getContext("2d")).PolarArea(chartData);
-  new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
-  new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
-  
-  </script>
-
-
+    </script>
+    
   </body>
 </html>
