@@ -52,7 +52,7 @@
             <img class="img-responsive" src="/media/img/arbie-piechart.png">
           </div>
           <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-            <h2>Here are your results!</h2>
+            <h2>Here are your results {{username}}!</h2>
             <h3>Below are some recommendations Arbie has for you! Should you have any more questions regarding any of recommendations, feel free to contact your local RBC advisor for more details!</h3>
             <!--<hr>--> <!-- break -->
           </div>
@@ -63,10 +63,18 @@
     <div class="section-colored">
       <div class="container">
         <div class="row">
-          <div class="col-lg-4 col-md-4 col-sm-4">
+          <div class="col-lg-6 col-md-6 col-sm-6">
             <h2> Here are where you investments lie: </h2>
+            <ul>
+              {% if investment_1_value != 0.0 %}
+              <li> ONE </li>
+              {% end if %}
+              {% if investment_1_value != 0.0 %}
+              <li> TWO </li>
+              {% end if %}
+            </ul>
           </div>
-          <div class="col-lg-8 col-md-8 col-sm-8">
+          <div class="col-lg-6 col-md-6 col-sm-6">
             <div id="donutchart" style="width: 550px; height: 300px;"></div>
           </div>
         </div><!-- row -->
@@ -114,7 +122,7 @@
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
+        var datadc = google.visualization.arrayToDataTable([
           ['Investment Name', 'Percentage of Total Investments'],
           ['{{investment_1_name}}',{{investment_1_value}}],
           ['{{investment_2_name}}',{{investment_2_value}}],
@@ -137,7 +145,7 @@
           ['{{investment_19_name}}',{{investment_19_value}}]
         ]);
 
-        var options = {
+        var optionsdc = {
           legend: 'none',
           pieHole: 0.4,
           backgroundColor: 'none',
@@ -145,7 +153,7 @@
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-        chart.draw(data, options);
+        chart.draw(datadc, optionsdc);
       }
     </script>
     
