@@ -13,6 +13,7 @@ from scipy.cluster.vq import kmeans,vq
 from mysite.invest.models import User
 from mysite.invest.models import RBC_Customer
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Avg
 
 #with open('invest_sees_path', 'w') as f:
 #    f.write(repr(sys.path))
@@ -42,7 +43,7 @@ def account(request, num):
     if (len(usrs) == 0):
         context = RequestContext(request, {})
     else:
-        makeFig()
+        #makeFig()
         context = RequestContext(request, {
             'name': usrs[0].name
         })
@@ -50,6 +51,17 @@ def account(request, num):
 
 def login(request):
     return render_to_response('invest/index.html')
+
+def about_cluster(cluster):
+    risk = math.floor(RBC_Customer.objects.all().filter("clusterID"=cluster).aggregate(Avg('risk')))
+    riskCategory = "Low"
+    if risk > 30:
+        riskCategory= "Medium"
+    if risk > 60:
+        riskCategory = "High"
+    roi = [{"time_period":(i+1), "value":RBC_Customer.objects.all().filter("clusterID"=cluster).aggregate(Avg('roi_%s' % i))} for i in range(1, 21)]
+    income = RBC_Customer.objects.all().filter("clusterID"=cluster).aggregate(Avg('income'))
+    return (risk, riskCategory, roi, income)
 
 def request_login(request):
     userid = 0
@@ -74,7 +86,8 @@ def edit_account(request):
     if rec is None:
         return render_to_response('invest/index.html')
     else:
-        makeFig()
+        #makeFig()
+        (clusterRisk, clusterRiskCategory, clusterRoi, clusterIncome) = about_cluster(rec.clusterID)
         context = RequestContext(request, {
             'investment_1_name': 'High Risk Stock A',
             'investment_1_value': rec.investmentData_1,
@@ -114,6 +127,10 @@ def edit_account(request):
             'investment_18_value': rec.investmentData_18,
             'investment_19_name': 'Bond C',
             'investment_19_value': rec.investmentData_19,
+            'clusterRisk': clusterRisk,
+            'clusterRiskCategory': clusterRiskCategory,
+            'clusterRoi': clusterRoi,
+            'clusterIncome': clusterIncome,
 
 
         })
@@ -131,7 +148,7 @@ def display_home(request):
     if rec is None:
         return render_to_response('invest/index.html')
     else:
-        makeFig()
+        #makeFig()
         context = RequestContext(request, {
             'investment_1_name': 'High Risk Stock A',
             'investment_1_value': rec.investmentData_1,
