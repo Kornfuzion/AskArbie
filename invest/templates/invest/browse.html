@@ -64,7 +64,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <h2> Here are where you investments lie: </h2>
+            <h2> Here are your current investments: </h2>
               {% if investment_1_value != 0.0 %}
               <h4> {{investment_1_name}} : {{investment_1_value}}%</h4>
               {% endif %}
@@ -134,17 +134,53 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <div id="areachart" style="width: 550px; height: 300px;"></div>
+	   <div id="areachart" style="width: 550px; height: 300px;"></div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
-	    <h2>Cluster Profile</h2>
+ 		<h2>Cluster Profile</h2>
             <h3>Risk Index (0-100): {{clusterRisk}} </h3>
 	    <h3>Risk Category: {{clusterRiskCategory}}</h3>
-	    <h3>Average Income: ${{clusterIncome}}</h3>
+	    <h3>Average Income: ${{clusterIncome}}</h3>            
           </div>
         </div><!-- row -->
       </div><!-- container -->
-    </div><!-- section-colored -->
+    </div><!-- section -->
+
+    {% for recommend in recommendations %}
+    {% if recommend.even %}
+    <div class="section-colored">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div id="{{ recommend.n }}" style="width: 550px; height: 300px;"></div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+	    <h2>{{ recommend.message }}</h2>
+            <h3>Investment Name: {{recommend.name}}</h3>
+	    <h3>Risk Index (0-100): {{recommend.risk}}</h3>
+          </div>
+	</div><!-- row -->
+      </div><!-- container -->
+    </div><!-- section -->
+    {% else %}
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+	    <h2>{{ recommend.message }}</h2>
+            <h3>Investment Name: {{recommend.name}}</h3>
+	    <h3>Risk Index (0-100): {{recommend.risk}}</h3>
+          </div>
+	  <div class="col-lg-6 col-md-6 col-sm-6">
+            <div id="{{ recommend.n }}" style="width: 550px; height: 300px;"></div>
+          </div>
+	
+        </div><!-- row -->
+      </div><!-- container -->
+    </div><!-- section -->
+    {% endif %}
+    {% endfor %}
+
 
     <div class="container">
       <hr>
@@ -208,13 +244,32 @@
         ]);
 
         var optionsac = {
-          title: 'Company Performance',
+          title: 'Performance',
           hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
           vAxis: {minValue: 0}
         };
 
         var chartac = new google.visualization.AreaChart(document.getElementById('areachart'));
         chartac.draw(dataac, optionsac);
+
+	{% for recommend in recommendations %}
+       dataac = google.visualization.arrayToDataTable([
+	  ['Month', 'Roi'],
+          {% for roiUserPoint in recommend.graph  %}
+            [{{ roiUserPoint.time_period }},
+            {{ roiUserPoint.value }}],
+          {% endfor %}
+        ]);
+
+        optionsac = {
+          title: 'Investment Performance',
+          hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        chartac = new google.visualization.AreaChart(document.getElementById('{{recommend.n}}'));
+        chartac.draw(dataac, optionsac);
+	{% endfor %}
 
       }
     </script>

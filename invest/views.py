@@ -77,7 +77,7 @@ def sorted_investments(cluster):
     s = sorted(investments, key=lambda x: x[1], reverse=True)
     print "sorted", s
     print "vals", [x[0] for x in s]
-    return [x[0] for x in s]
+    return [x[0] for x in s if x[1] > 0]
 
 def get_recommendations(customer):
     s = sorted_investments(customer.clusterID)
@@ -86,7 +86,7 @@ def get_recommendations(customer):
     for i in s[0:3]:
         if getattr(customer, "investmentData_%s" % (i+1)) == 0:
             add.append(i)
-    for i in s[-3:0]:
+    for i in s[-3:]:
         if getattr(customer, "investmentData_%s" % (i+1)) > 0:
             rem.append(i)
     print "add", add
@@ -162,7 +162,11 @@ def edit_account(request):
     return HttpResponse(template.render(context))
 
 def create_investment_history(investID):
-    rec = Investment_History.objects.get(id=investID)
+    try:
+        rec = Investment_History.objects.get(id=investID+1)
+    except ObjectDoesNotExist:
+	return (None, None, None)
+
     userpoints = list()
     userpoints.append({"time_period":1, "value" :rec.roi_1, })
     userpoints.append({"time_period":2, "value" :rec.roi_2, })
@@ -208,12 +212,14 @@ def display_home(request):
 
         recommendations = list()
 	for investmentId in add:
-            (investment_history, name, risk_level) = create_investment_history(investmentId)
-            recommendations.append({"name": name, "risk" :risk_level, "graph":investment_history})
+            (investment_history, name, risk_level) = create_investment_history(investmentId )
+            recommendations.append({"name": name, "risk" :risk_level, "graph":investment_history, "n":len(recommendations), "message":"Add",
+					"even": len(recommendations) % 2 == 0})
 
 	for investmentId in rem:
             (investment_history, name, risk_level) = create_investment_history(investmentId)
-            recommendations.append({"name": name, "risk" :risk_level, "graph":investment_history})
+            recommendations.append({"name": name, "risk" :risk_level, "graph":investment_history, "n":len(recommendations), "message":"Remove",
+					"even": len(recommendations) % 2 == 0})
 
         userpoints = list()
         userpoints.append({"time_period":1, "you" :rec.roi_1, "avg":clusterRoi[0]["value"]})
