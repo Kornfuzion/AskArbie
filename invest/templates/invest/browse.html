@@ -52,8 +52,8 @@
             <img class="img-responsive" src="/media/img/arbie-piechart.png">
           </div>
           <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-            <h2>Here are your results!</h2>
-            <h3>Below are some recommendations Arbie has for you! Should you have any more questions regarding any of recommendations, feel free to contact your local RBC advisor for more details!</h3>
+            <h2>Here are your results {{username}}!</h2>
+            <h3>Below are some recommendations Arbie has for you. Should you have any more questions regarding any of recommendations, feel free to contact your local RBC advisor for more details.</h3>
             <!--<hr>--> <!-- break -->
           </div>
         </div><!-- row -->
@@ -63,10 +63,69 @@
     <div class="section-colored">
       <div class="container">
         <div class="row">
-          <div class="col-lg-4 col-md-4 col-sm-4">
+          <div class="col-lg-6 col-md-6 col-sm-6">
             <h2> Here are where you investments lie: </h2>
+            <ul>
+              {% if investment_1_value != 0.0 %}
+              <li> {{investment_1_name}}</li>
+              {% endif %}
+              {% if investment_2_value != 0.0 %}
+              <li> {{investment_2_name}}</li>
+              {% endif %}
+              {% if investment_3_value != 0.0 %}
+              <li> {{investment_3_name}}</li>
+              {% endif %}
+              {% if investment_4_value != 0.0 %}
+              <li> {{investment_4_name}}</li>
+              {% endif %}
+              {% if investment_5_value != 0.0 %}
+              <li> {{investment_5_name}}</li>
+              {% endif %}
+              {% if investment_6_value != 0.0 %}
+              <li> {{investment_6_name}}</li>
+              {% endif %}
+              {% if investment_7_value != 0.0 %}
+              <li> {{investment_7_name}}</li>
+              {% endif %}
+              {% if investment_8_value != 0.0 %}
+              <li> {{investment_8_name}}</li>
+              {% endif %}
+              {% if investment_9_value != 0.0 %}
+              <li> {{investment_9_name}}</li>
+              {% endif %}
+              {% if investment_10_value != 0.0 %}
+              <li> {{investment_10_name}}</li>
+              {% endif %}
+              {% if investment_11_value != 0.0 %}
+              <li> {{investment_11_name}}</li>
+              {% endif %}
+              {% if investment_12_value != 0.0 %}
+              <li> {{investment_12_name}}</li>
+              {% endif %}
+              {% if investment_13_value != 0.0 %}
+              <li> {{investment_13_name}}</li>
+              {% endif %}
+              {% if investment_14_value != 0.0 %}
+              <li> {{investment_14_name}}</li>
+              {% endif %}
+              {% if investment_15_value != 0.0 %}
+              <li> {{investment_15_name}}</li>
+              {% endif %}
+              {% if investment_16_value != 0.0 %}
+              <li> {{investment_16_name}}</li>
+              {% endif %}
+              {% if investment_17_value != 0.0 %}
+              <li> {{investment_17_name}}</li>
+              {% endif %}
+              {% if investment_18_value != 0.0 %}
+              <li> {{investment_18_name}}</li>
+              {% endif %}
+              {% if investment_19_value != 0.0 %}
+              <li> {{investment_19_name}}</li>
+              {% endif %}
+            </ul>
           </div>
-          <div class="col-lg-8 col-md-8 col-sm-8">
+          <div class="col-lg-6 col-md-6 col-sm-6">
             <div id="donutchart" style="width: 550px; height: 300px;"></div>
           </div>
         </div><!-- row -->
@@ -114,7 +173,7 @@
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
+        var datadc = google.visualization.arrayToDataTable([
           ['Investment Name', 'Percentage of Total Investments'],
           ['{{investment_1_name}}',{{investment_1_value}}],
           ['{{investment_2_name}}',{{investment_2_value}}],
@@ -137,7 +196,7 @@
           ['{{investment_19_name}}',{{investment_19_value}}]
         ]);
 
-        var options = {
+        var optionsdc = {
           legend: 'none',
           pieHole: 0.4,
           backgroundColor: 'none',
@@ -145,7 +204,7 @@
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-        chart.draw(data, options);
+        chart.draw(datadc, optionsdc);
       }
     </script>
     

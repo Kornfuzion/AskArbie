@@ -32,6 +32,7 @@ def makeFig():
     plot(centroids[:,0],centroids[:,1], 'sg', markersize=8)
     savefig('/home/james/mysite/media/cluster.png')
 
+
 def index(request):
     with open('dump.txt', 'w') as f:
         f.write("Got HERE!")
@@ -87,8 +88,8 @@ def edit_account(request):
         return render_to_response('invest/index.html')
     else:
         #makeFig()
-        (clusterRisk, clusterRiskCategory, clusterRoi, clusterIncome) = about_cluster(rec.clusterID)
         context = RequestContext(request, {
+            'username': rec.userName,
             'investment_1_name': 'High Risk Stock A',
             'investment_1_value': rec.investmentData_1,
             'investment_2_name': 'High Risk Stock B',
@@ -127,12 +128,6 @@ def edit_account(request):
             'investment_18_value': rec.investmentData_18,
             'investment_19_name': 'Bond C',
             'investment_19_value': rec.investmentData_19,
-            'clusterRisk': clusterRisk,
-            'clusterRiskCategory': clusterRiskCategory,
-            'clusterRoi': clusterRoi,
-            'clusterIncome': clusterIncome,
-
-
         })
 
     return HttpResponse(template.render(context))
@@ -149,7 +144,30 @@ def display_home(request):
         return render_to_response('invest/index.html')
     else:
         #makeFig()
+        (clusterRisk, clusterRiskCategory, clusterRoi, clusterIncome) = about_cluster(rec.clusterID)
+        userpoints = list()
+        userpoints.append({"time_period":1, "value" :rec.roi_1})
+        userpoints.append({"time_period":2, "value" :rec.roi_2})
+        userpoints.append({"time_period":3, "value" :rec.roi_3})
+        userpoints.append({"time_period":4, "value" :rec.roi_4})
+        userpoints.append({"time_period":5, "value" :rec.roi_5})
+        userpoints.append({"time_period":6, "value" :rec.roi_6})
+        userpoints.append({"time_period":7, "value" :rec.roi_7})
+        userpoints.append({"time_period":8, "value" :rec.roi_8})
+        userpoints.append({"time_period":9, "value" :rec.roi_9})
+        userpoints.append({"time_period":10, "value" :rec.roi_10})
+        userpoints.append({"time_period":11, "value" :rec.roi_11})
+        userpoints.append({"time_period":12, "value" :rec.roi_12})
+        userpoints.append({"time_period":13, "value" :rec.roi_13})
+        userpoints.append({"time_period":14, "value" :rec.roi_14})
+        userpoints.append({"time_period":15, "value" :rec.roi_15})
+        userpoints.append({"time_period":16, "value" :rec.roi_16})
+        userpoints.append({"time_period":17, "value" :rec.roi_17})
+        userpoints.append({"time_period":18, "value" :rec.roi_18})
+        userpoints.append({"time_period":19, "value" :rec.roi_19})
+        userpoints.append({"time_period":20, "value" :rec.roi_20})
         context = RequestContext(request, {
+            'username': rec.userName,
             'investment_1_name': 'High Risk Stock A',
             'investment_1_value': rec.investmentData_1,
             'investment_2_name': 'High Risk Stock B',
@@ -188,8 +206,11 @@ def display_home(request):
             'investment_18_value': rec.investmentData_18,
             'investment_19_name': 'Bond C',
             'investment_19_value': rec.investmentData_19,
-
-
+            'roiUser':userpoints,
+            'clusterRisk': clusterRisk,
+            'clusterRiskCategory': clusterRiskCategory,
+            'clusterRoi': clusterRoi,
+            'clusterIncome': clusterIncome,
         })
 
     return HttpResponse(template.render(context))
