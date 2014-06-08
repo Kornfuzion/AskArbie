@@ -6,7 +6,11 @@ from mysite.invest import views
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^(?P<num>\d+)/$', views.account, name='account'),
-    url(r'^login/$', views.request_login),
-    url(r'^account/(?P<userid>\d+)/$', views.display_home),
-    url(r'^profile/(?P<userid>\d+)/$', views.edit_account)
+    url(r'^login/$', views.login),
+    url(r'^loginAction/$', views.request_login),
+    url(r'^account/$', views.display_home),
+    url(r'^profile/$', views.edit_account),
+    url(r'browse.html$', views.display_home),
+    url(r'profile.html$', views.edit_account),
+    url(r'index.html$', views.login)
 )

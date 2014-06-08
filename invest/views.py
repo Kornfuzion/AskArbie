@@ -11,6 +11,8 @@ from numpy.random import rand
 from scipy.cluster.vq import kmeans,vq
 
 from mysite.invest.models import User
+from mysite.invest.models import RBC_Customer
+from django.core.exceptions import ObjectDoesNotExist
 
 #with open('invest_sees_path', 'w') as f:
 #    f.write(repr(sys.path))
@@ -46,29 +48,28 @@ def account(request, num):
         })
     return HttpResponse(template.render(context))
 
+def login(request):
+    return render_to_response('invest/index.html')
 
 def request_login(request):
-    username = password = ''
+    userid = 0
     if request.POST:
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
-        return display_home(request, username)
-        """
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return render_to_response('invest/browse.html')
-            else:
-                return render_to_response('invest/index.html')
-        else:
-            return render_to_response('invest/index.html')"""
+        userid = request.POST.get('account_number')
+        request.session['user_id'] = userid
+        try:	
+            rec = RBC_Customer.objects.get(id=userid)
+        except ObjectDoesNotExist:
+            return render_to_response('invest/index.html')
+        return display_home(request)
     else:
         return render_to_response('invest/index.html')
 
-def edit_account(request, userid):
+def edit_account(request):
     template = loader.get_template('invest/profile.html')
+    if not request.session.has_key('user_id'):
+	return render_to_response('invest/index.html')
+
+    userid = request.session['user_id']
     rec = RBC_Customer.objects.get(id=userid)
     if rec is None:
         return render_to_response('invest/index.html')
@@ -119,16 +120,13 @@ def edit_account(request, userid):
 
     return HttpResponse(template.render(context))
 
-
-from mysite.invest.models import RBC_Customer
-
-def display_home(request, userid):
-    """if request.user.is_authenticated():
-        return render_to_response('invest/browse.html')
-    else:
-        return render_to_response('invest/index.html')"""
-
+def display_home(request):
     template = loader.get_template('invest/browse.html')
+    
+    if not request.session.has_key('user_id'):
+	return render_to_response('invest/index.html')
+    
+    userid=request.session['user_id']
     rec = RBC_Customer.objects.get(id=userid)
     if rec is None:
         return render_to_response('invest/index.html')

@@ -70,9 +70,9 @@ def go():
             print investments[i], mean, std
 
     def getNames():
-        with open("first.txt", "r") as first_file:
+        with open("/home/james/mysite/invest/initial_data_gen/first.txt", "r") as first_file:
             first = first_file.read().split()
-        with open("last.txt", "r") as last_file:
+        with open("/home/james/mysite/invest/initial_data_gen/last.txt", "r") as last_file:
             last = last_file.read().split()
         for i in range(len(last)):
             chars = [last[i][0]]
@@ -88,10 +88,10 @@ def go():
     from invest.models import RBC_Customer
 
     for i, p in enumerate(people):
-        args = {"investmentData_%s" % n : v for n,v in enumerate(p[0])}
+        args = {"investmentData_%s" % (n+1) : v for n,v in enumerate(p[0])}
         f = first[random.randint(0, len(first)-1)]
         l = last[random.randint(0, len(last)-1)]
-        args["name"] = "%s %s" % (f, l)
+        args["userName"] = "%s %s" % (f, l)
         args["income"] = 0
         args["clusterID"] = idx[i]
 
