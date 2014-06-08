@@ -63,19 +63,10 @@
     <div class="section-colored">
       <div class="container">
         <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="col-lg-4 col-md-4 col-sm-4">
             <h2> Here are where you investments lie: </h2>
-            <ul>
-              <li> {{investment_1_name}}:{{investment_1_value}}</li>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
-            </ul>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="col-lg-8 col-md-8 col-sm-8">
             <div id="donutchart" style="width: 550px; height: 300px;"></div>
           </div>
         </div><!-- row -->
@@ -125,11 +116,25 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Investment Name', 'Percentage of Total Investments'],
-          ['{{investment_1_name}}',     {{investment_1_value}}],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['{{investment_1_name}}',{{investment_1_value}}],
+          ['{{investment_2_name}}',{{investment_2_value}}],
+          ['{{investment_3_name}}',{{investment_3_value}}],
+          ['{{investment_4_name}}',{{investment_4_value}}],
+          ['{{investment_5_name}}',{{investment_5_value}}],
+          ['{{investment_6_name}}',{{investment_6_value}}],
+          ['{{investment_7_name}}',{{investment_7_value}}],
+          ['{{investment_8_name}}',{{investment_8_value}}],
+          ['{{investment_9_name}}',{{investment_9_value}}],
+          ['{{investment_10_name}}',{{investment_10_value}}],
+          ['{{investment_11_name}}',{{investment_11_value}}],
+          ['{{investment_12_name}}',{{investment_12_value}}],
+          ['{{investment_13_name}}',{{investment_13_value}}],
+          ['{{investment_14_name}}',{{investment_14_value}}],
+          ['{{investment_15_name}}',{{investment_15_value}}],
+          ['{{investment_16_name}}',{{investment_16_value}}],
+          ['{{investment_17_name}}',{{investment_17_value}}],
+          ['{{investment_18_name}}',{{investment_18_value}}],
+          ['{{investment_19_name}}',{{investment_19_value}}]
         ]);
 
         var options = {
