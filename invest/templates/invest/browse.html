@@ -206,17 +206,18 @@
         var chartdc = new google.visualization.PieChart(document.getElementById('donutchart'));
         chartdc.draw(datadc, optionsdc);
 
-        function drawChart() {
         var dataac = google.visualization.arrayToDataTable([
+	  ['Month', 'Your ROI', 'Average'],
           {% for roiUserPoint in roiUser  %}
-            {{ roiUserPoint.time_period }}
-            {{ roiUserPoint.value }}
+            [{{ roiUserPoint.time_period }},
+            {{ roiUserPoint.you }},
+	    {{ roiUserPoint.avg }}],
           {% endfor %}
         ]);
 
         var optionsac = {
           title: 'Company Performance',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
           vAxis: {minValue: 0}
         };
 
