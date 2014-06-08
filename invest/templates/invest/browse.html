@@ -65,65 +65,63 @@
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-6">
             <h2> Here are where you investments lie: </h2>
-            <ul>
               {% if investment_1_value != 0.0 %}
-              <li> {{investment_1_name}}</li>
+              <h4> {{investment_1_name}} : {{investment_1_value}}%</h4>
               {% endif %}
               {% if investment_2_value != 0.0 %}
-              <li> {{investment_2_name}}</li>
+              <h4> {{investment_2_name}} : {{investment_2_value}}%</h4>
               {% endif %}
               {% if investment_3_value != 0.0 %}
-              <li> {{investment_3_name}}</li>
+              <h4> {{investment_3_name}} : {{investment_3_value}}%</h4>
               {% endif %}
               {% if investment_4_value != 0.0 %}
-              <li> {{investment_4_name}}</li>
+              <h4> {{investment_4_name}} : {{investment_4_value}}%</h4>
               {% endif %}
               {% if investment_5_value != 0.0 %}
-              <li> {{investment_5_name}}</li>
+              <h4> {{investment_5_name}} : {{investment_5_value}}%</h4>
               {% endif %}
               {% if investment_6_value != 0.0 %}
-              <li> {{investment_6_name}}</li>
+              <h4> {{investment_6_name}} : {{investment_6_value}}%</h4>
               {% endif %}
               {% if investment_7_value != 0.0 %}
-              <li> {{investment_7_name}}</li>
+              <h4> {{investment_7_name}} : {{investment_7_value}}%</h4>
               {% endif %}
               {% if investment_8_value != 0.0 %}
-              <li> {{investment_8_name}}</li>
+              <h4> {{investment_8_name}} : {{investment_8_value}}%</h4>
               {% endif %}
               {% if investment_9_value != 0.0 %}
-              <li> {{investment_9_name}}</li>
+              <h4> {{investment_9_name}} : {{investment_9_value}}%</h4>
               {% endif %}
               {% if investment_10_value != 0.0 %}
-              <li> {{investment_10_name}}</li>
+              <h4> {{investment_10_name}} : {{investment_10_value}}%</h4>
               {% endif %}
               {% if investment_11_value != 0.0 %}
-              <li> {{investment_11_name}}</li>
+              <h4> {{investment_11_name}} : {{investment_11_value}}%</h4>
               {% endif %}
               {% if investment_12_value != 0.0 %}
-              <li> {{investment_12_name}}</li>
+              <h4> {{investment_12_name}} : {{investment_12_value}}%</h4>
               {% endif %}
               {% if investment_13_value != 0.0 %}
-              <li> {{investment_13_name}}</li>
+              <h4> {{investment_13_name}} : {{investment_13_value}}%</h4>
               {% endif %}
               {% if investment_14_value != 0.0 %}
-              <li> {{investment_14_name}}</li>
+              <h4> {{investment_14_name}} : {{investment_14_value}}%</h4>
               {% endif %}
               {% if investment_15_value != 0.0 %}
-              <li> {{investment_15_name}}</li>
+              <h4> {{investment_15_name}} : {{investment_15_value}}%</h4>
               {% endif %}
               {% if investment_16_value != 0.0 %}
-              <li> {{investment_16_name}}</li>
+              <h4> {{investment_16_name}} : {{investment_16_value}}%</h4>
               {% endif %}
               {% if investment_17_value != 0.0 %}
-              <li> {{investment_17_name}}</li>
+              <h4> {{investment_17_name}} : {{investment_17_value}}%</h4>
               {% endif %}
               {% if investment_18_value != 0.0 %}
-              <li> {{investment_18_name}}</li>
+              <h4> {{investment_18_name}} : {{investment_18_value}}%</h4>
               {% endif %}
               {% if investment_19_value != 0.0 %}
-              <li> {{investment_19_name}}</li>
+              <h4> {{investment_19_name}} : {{investment_19_value}}%</h4>
               {% endif %}
-            </ul>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
             <div id="donutchart" style="width: 550px; height: 300px;"></div>
@@ -139,16 +137,10 @@
             <div id="areachart" style="width: 550px; height: 300px;"></div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <h2> title and list on left side </h2>
-            <ul>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
-              <li> item </li>
-            </ul>
+	    <h2>Cluster Profile</h2>
+            <h3>Risk Index (0-100): {{clusterRisk}} </h3>
+	    <h3>Risk Category: {{clusterRiskCategory}}</h3>
+	    <h3>Average Income: ${{clusterIncome}}</h3>
           </div>
         </div><!-- row -->
       </div><!-- container -->
