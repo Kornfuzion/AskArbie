@@ -1,0 +1,131 @@
+/* 
+  RBC Innovation Home Page css
+  Author: Ernest Yim
+*/
+html, body {
+  height:100%;
+}
+
+body {
+  padding-top: 50px; /* body padding for fixed top nav */
+  font-family: Arial;
+}
+
+label {
+  text-align: left;
+}
+
+.navbar-default .navbar-nav > li > a{
+  color: #ffffff;
+}
+
+.navbar-default .navbar-nav > li > a:hover{
+  color: #FFE600;
+}
+
+.navbar {
+  background-color: #002E66;
+  border-color: #000000;
+  font-color: #000000;
+}
+
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 50px;
+    height: 50px;
+    padding-top: 0;
+}
+
+/* Page Sections */
+.section,
+.section-colored {
+  padding: 50px 0;
+}
+
+.section-colored {
+  background-color: #D8DEEB; 
+}
+
+.sidebar {
+  margin-top: 40px;
+}
+
+.sidebar ul {
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid #cccccc;
+}
+
+/* Carousel Customization */
+.carousel {
+  height: 60%;
+}
+
+.carousel-caption {
+  margin:0;
+  padding:0;
+  left: 60%;
+  width:300px;
+  height:300px;
+  color:#000000;
+  text-shadow: 0 0px 0px rgba(0, 0, 0, 0.7);
+  background-color:transparent;
+}
+
+.field {
+  padding: 2px;
+}
+
+.signup-btn {
+  margin: 2px;
+  color: #FFF;
+  background-color: #002E66;
+}
+
+.signup-btn:hover {
+  color: #FFE600;;
+}
+
+.item,
+.active,
+.carousel-inner {
+  height: 100%;
+}
+
+.fill {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+/* Footer Styles */
+footer {
+  margin: 50px 0;
+}
+
+canvas{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 767px) {
+
+  .carousel {
+    height: 70%; /* increases the carousel height so it looks good on phones */
+  }
+
+  .carousel-caption {
+    margin:100px;
+    padding:0;
+    left: 40%;
+    width:150px;
+    height:150px;
+    color:#000000;
+    text-shadow: 0 0px 0px rgba(0, 0, 0, 0.7);
+    background-color:transparent;
+  }
+
+}

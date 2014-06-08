@@ -76,9 +76,9 @@ def go():
             print investments[i], mean, std
 
     def getNames():
-        with open("first.txt", "r") as first_file:
+        with open("/home/james/mysite/invest/initial_data_gen/first.txt", "r") as first_file:
             first = first_file.read().split()
-        with open("last.txt", "r") as last_file:
+        with open("/home/james/mysite/invest/initial_data_gen/last.txt", "r") as last_file:
             last = last_file.read().split()
         for i in range(len(last)):
             chars = [last[i][0]]
