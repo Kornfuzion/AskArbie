@@ -66,20 +66,20 @@ def about_cluster(cluster):
     return (risk, riskCategory, roi, income)
 
 def sorted_investments(cluster):
-    people = RBC_Customer.objects.all().filter(clustedID=cluster)
+    people = RBC_Customer.objects.all().filter(clusterID=cluster)
     investments = [[i, 0] for i in range(19)]
     for p in people:
         roi = p.roi_20
-        for i in range(1,20):
+        for i in range(19):
             investments[i][1] += roi * getattr(p, "investmentData_%s" % (i+1))
     print "weighted", investments
-    s = sorted(invesments, key=lambda x: x[1], reverse=True)
+    s = sorted(investments, key=lambda x: x[1], reverse=True)
     print "sorted", s
     print "vals", [x[0] for x in s]
     return [x[0] for x in s]
 
 def get_recommendations(customer):
-    s = sorted_invesments(customer.clusterID)
+    s = sorted_investments(customer.clusterID)
     add = []
     rem = []
     for i in s[0:3]:
