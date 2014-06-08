@@ -65,6 +65,33 @@ def about_cluster(cluster):
     income = RBC_Customer.objects.all().filter(clusterID=cluster).aggregate(Avg('income'))["income__avg"]
     return (risk, riskCategory, roi, income)
 
+def sorted_investments(cluster):
+    people = RBC_Customer.objects.all().filter(clustedID=cluster)
+    investments = [[i, 0] for i in range(19)]
+    for p in people:
+        roi = p.roi_20
+        for i in range(1,20):
+            investments[i][1] += roi * getattr(p, "investmentData_%s" % (i+1))
+    print "weighted", investments
+    s = sorted(invesments, key=lambda x: x[1], reverse=True)
+    print "sorted", s
+    print "vals", [x[0] for x in s]
+    return [x[0] for x in s]
+
+def get_recommendations(customer):
+    s = sorted_invesments(customer.clusterID)
+    add = []
+    rem = []
+    for i in s[0:3]:
+        if getattr(customer, "investmentData_%s" % (i+1)) == 0:
+            add.append(i)
+    for i in s[-3:0]:
+        if getattr(customer, "investmentData_%s" % (i+1)) > 0:
+            rem.append(i)
+    print "add", add
+    print "rem", rem
+    return (add, rem)
+
 def request_login(request):
     userid = 0
     if request.POST:
@@ -146,6 +173,7 @@ def display_home(request):
     else:
         #makeFig()
         (clusterRisk, clusterRiskCategory, clusterRoi, clusterIncome) = about_cluster(rec.clusterID)
+        (add, rem) = get_recommendations(rec)
         userpoints = list()
         userpoints.append({"time_period":1, "you" :rec.roi_1, "avg":clusterRoi[0]["value"]})
         userpoints.append({"time_period":2, "you" :rec.roi_2, "avg":clusterRoi[1]["value"]})
