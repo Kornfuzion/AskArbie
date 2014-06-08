@@ -3,6 +3,7 @@
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.shortcuts import render_to_response
+import math
 import sys
 
 from pylab import plot, show, savefig, clf
@@ -54,14 +55,14 @@ def login(request):
     return render_to_response('invest/index.html')
 
 def about_cluster(cluster):
-    risk = math.floor(RBC_Customer.objects.all().filter("clusterID"=cluster).aggregate(Avg('risk')))
+    risk = math.floor(RBC_Customer.objects.all().filter(clusterID=cluster).aggregate(Avg('risk'))["risk__avg"])
     riskCategory = "Low"
     if risk > 30:
         riskCategory= "Medium"
     if risk > 60:
         riskCategory = "High"
-    roi = [{"time_period":(i+1), "value":RBC_Customer.objects.all().filter("clusterID"=cluster).aggregate(Avg('roi_%s' % i))} for i in range(1, 21)]
-    income = RBC_Customer.objects.all().filter("clusterID"=cluster).aggregate(Avg('income'))
+    roi = [{"time_period":i, "value":RBC_Customer.objects.all().filter(clusterID=cluster).aggregate(Avg('roi_%s' % i))["roi_%s__avg" % i]} for i in range(1, 21)]
+    income = RBC_Customer.objects.all().filter(clusterID=cluster).aggregate(Avg('income'))["income__avg"]
     return (risk, riskCategory, roi, income)
 
 def request_login(request):
@@ -166,6 +167,7 @@ def display_home(request):
         userpoints.append({"time_period":18, "value" :rec.roi_18})
         userpoints.append({"time_period":19, "value" :rec.roi_19})
         userpoints.append({"time_period":20, "value" :rec.roi_20})
+	print (clusterRisk, clusterRiskCategory, clusterRoi, clusterIncome)
         context = RequestContext(request, {
             'username': rec.userName,
             'investment_1_name': 'High Risk Stock A',
