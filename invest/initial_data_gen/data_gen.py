@@ -49,8 +49,14 @@ def go():
         for i, inv in enumerate(investments):
             print i, inv
 
+    def genIncome(rng):
+        low, high = rng
+        return random.uniform(low, high)
+
     types = [(baller_proto, "baller"), (mom_proto, "mom"), (old_proto, "old"), (stock_proto, "stock"), (rounded_proto, "rounded"), (stable_proto, "stable")]
-    people = [(genPerson(proto), name) for proto, name in (types * 1000)]
+    incomeRanges = {"baller":(100000,500000), "mom":(40000, 70000), "old":(60000, 80000),
+                    "stock":(80000, 100000), "rounded":(50000, 100000), "stable":(50000,60000)}
+    people = [(genPerson(proto), name, genIncome(incomeRanges[name])) for proto, name in (types * 1000)]
     pa = numpy.array(people)
         
     data = numpy.array([person[0] for person in people])
@@ -85,15 +91,74 @@ def go():
 
     first, last = getNames()
 
+    def genStockInfo(target, volatility, points=20):
+        linear = [(float(target) / (points-2)) * i for i in range(points-1)]
+        return [0] + [x + random.uniform(0, volatility) for x in linear]
+
+    roi = [0] * len(investments)
+    roi[0] = genStockInfo(-10, 4)
+    roi[1] = genStockInfo(10, 4)
+    roi[2] = genStockInfo(15, 4)
+    roi[3] = genStockInfo(-3, 4)
+    roi[4] = genStockInfo(7, 4)
+    roi[5] = genStockInfo(-7, 4)
+    roi[6] = genStockInfo(4, 2)
+    roi[7] = genStockInfo(-4, 2)
+    roi[8] = genStockInfo(2, 1)
+    roi[9] = genStockInfo(5, 4)
+    roi[10] = genStockInfo(-5, 4)
+    roi[11] = genStockInfo(3, 1)
+    roi[12] = genStockInfo(1, 1)
+    roi[13] = genStockInfo(0.5, 0.1)
+    roi[14] = genStockInfo(1.5, 0.1)
+    roi[15] = genStockInfo(1, 0.1)
+    roi[16] = genStockInfo(0.5, 0.1)
+    roi[17] = genStockInfo(1.5, 0.1)
+    roi[18] = genStockInfo(1, 0.1)
+
+    risk = [0] * len(investments)
+    risk[0] = 100
+    risk[1] = 100
+    risk[2] = 100
+    risk[3] = 70
+    risk[4] = 70
+    risk[5] = 70
+    risk[6] = 40
+    risk[7] = 40
+    risk[8] = 40
+    risk[9] = 30
+    risk[10] = 30
+    risk[11] = 20
+    risk[12] = 20
+    risk[13] = 10
+    risk[14] = 10
+    risk[15] = 10
+    risk[16] = 10
+    risk[17] = 10
+    risk[18] = 10
+
+    def getRisk(person):
+        return sum([r * p for r, p in zip(risk, person)])
+
+    def getRoi(person):
+        return [sum([r[i] * p for r, p in zip(roi, person)]) for i in range(20)]
+
     from invest.models import RBC_Customer
 
     for i, p in enumerate(people):
-        args = {"investmentData_%s" % n : v for n,v in enumerate(p[0])}
+        args = {"investmentData_%s" % (n+1) : v for n,v in enumerate(p[0])}
         f = first[random.randint(0, len(first)-1)]
         l = last[random.randint(0, len(last)-1)]
-        args["name"] = "%s %s" % (f, l)
-        args["income"] = 0
+        args["userName"] = "%s %s" % (f, l)
+        args["income"] = p[2]
         args["clusterID"] = idx[i]
+
+        personalRoi = getRoi(p[0])
+        for n in range(20):
+            args["roi_%s" % str(n)] = personalRoi[n]
+        args["risk"] = getRisk(p[0])
 
         c = RBC_Customer(**args)
         c.save()
+
+
