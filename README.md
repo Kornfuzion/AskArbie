@@ -6,12 +6,12 @@ Ask Arbie automatically builds you a profile based on your investment history an
 
 The main idea behind Ask Arbie is that it empowers RBC customers to explore intelligent investment opportunities and set realistic financial goals for themselves. 
 
-Dependencies:
-1. Python 3.3 
+###Dependencies:
+1. Python 3.3
 2. Django 1.7.3
-3. SciPy Stack 
+3. SciPy Stack
 
-For Ubuntu & Debian
+###For Ubuntu & Debian
 1. sudo apt-get install python3.3
 2. sudo apt-get install python-pip
 3. (Optional) sudo pip install virtualenv
